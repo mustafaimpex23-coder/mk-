@@ -63,6 +63,11 @@
             box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
             transform: translateY(-2px);
         }
+        .gold-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
         .glass-nav {
             background: rgba(8, 9, 11, 0.92);
             backdrop-filter: blur(16px);
@@ -109,6 +114,40 @@
         .portfolio-card:hover .card-img-wrapper img {
             transform: scale(1.05);
         }
+
+
+        /* Animated three-line (burger) icon - used only in the header */
+        .burger { width: 26px; height: 18px; display: flex; flex-direction: column; justify-content: space-between; cursor: pointer; }
+        .burger span { display: block; height: 2px; border-radius: 2px; background: currentColor; transition: width 0.3s ease, transform 0.35s ease, opacity 0.3s ease; transform-origin: center; }
+        .burger span:nth-child(1) { width: 100%; }
+        .burger span:nth-child(2) { width: 65%; margin-left: auto; }
+        .burger span:nth-child(3) { width: 85%; }
+        .burger:hover span, .burger:focus-visible span { width: 100%; }
+        .burger:active span:nth-child(1) { transform: translateX(4px); }
+        .burger:active span:nth-child(3) { transform: translateX(-4px); }
+
+        /* Drawer open animations */
+        #mobile-menu .menu-item { opacity: 0; transform: translateX(28px); transition: opacity 0.4s ease, transform 0.4s ease, color 0.3s ease; }
+        #mobile-menu.menu-open .menu-item { opacity: 1; transform: translateX(0); }
+        #mobile-menu.menu-open .menu-item:nth-child(1) { transition-delay: 0.12s; }
+        #mobile-menu.menu-open .menu-item:nth-child(2) { transition-delay: 0.19s; }
+        #mobile-menu.menu-open .menu-item:nth-child(3) { transition-delay: 0.26s; }
+        #mobile-menu.menu-open .menu-item:nth-child(4) { transition-delay: 0.33s; }
+        #mobile-menu .menu-item:hover { transform: translateX(-4px); }
+        #mobile-menu .menu-footer { opacity: 0; transform: translateY(16px); transition: opacity 0.45s ease 0.4s, transform 0.45s ease 0.4s; }
+        #mobile-menu.menu-open .menu-footer { opacity: 1; transform: translateY(0); }
+
+        /* Cross (X) icon animation when the drawer opens */
+        #mobile-menu .close-x svg { transform: rotate(-90deg) scale(0.6); opacity: 0; transition: transform 0.4s ease 0.15s, opacity 0.3s ease 0.15s; }
+        #mobile-menu.menu-open .close-x svg { transform: rotate(0) scale(1); opacity: 1; }
+        #mobile-menu .close-x:hover svg { transform: rotate(90deg) scale(1); }
+
+        /* Query form success animation */
+        @keyframes popIn {
+            0% { opacity: 0; transform: scale(0.9) translateY(10px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+        .success-pop { animation: popIn 0.5s ease forwards; }
     </style>
 </head>
 <body class="antialiased text-gray-200">
@@ -151,29 +190,41 @@
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden flex items-center">
                     <button id="mobile-menu-btn" aria-label="Toggle navigation menu" class="text-gray-300 hover:text-brand-gold focus:outline-none p-2">
-                        <i class="fas fa-bars text-xl"></i>
+                        <span class="burger" aria-hidden="true"><span></span><span></span><span></span></span>
                     </button>
                 </div>
             </div>
         </div>
-
-        <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-b border-brand-gold/20 px-4 sm:px-6 pt-3 pb-6 space-y-3">
-            <a href="#about" class="block py-2 text-xs sm:text-sm uppercase tracking-widest font-semibold text-gray-300 hover:text-brand-gold">About Us</a>
-            <a href="#portfolio" class="block py-2 text-xs sm:text-sm uppercase tracking-widest font-semibold text-gray-300 hover:text-brand-gold">Portfolio</a>
-            <a href="#process" class="block py-2 text-xs sm:text-sm uppercase tracking-widest font-semibold text-gray-300 hover:text-brand-gold">Our Process</a>
-            <a href="#contact" class="block py-2 text-xs sm:text-sm uppercase tracking-widest font-semibold text-gray-300 hover:text-brand-gold">Contact</a>
-            <div class="pt-3 flex flex-col gap-2.5">
-                <a href="https://wa.me/923218662496" target="_blank" class="flex items-center justify-center gap-2 w-full py-2.5 text-xs sm:text-sm font-semibold text-brand-gold border border-brand-gold/30 rounded-xl">
-                    <i class="fab fa-whatsapp text-green-500"></i>
-                    <span>WhatsApp Direct</span>
-                </a>
-                <a href="#contact" class="gold-btn w-full py-2.5 rounded-xl text-center text-xs sm:text-sm font-bold uppercase tracking-wider">
-                    Send Query
-                </a>
-            </div>
-        </div>
     </header>
+
+    <!-- Mobile Menu: Right-Side Slide-In Drawer -->
+    <div id="menu-overlay" class="fixed inset-0 z-[60] bg-black/70 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"></div>
+    <aside id="mobile-menu" aria-hidden="true" class="fixed top-0 right-0 bottom-0 z-[70] w-[78%] max-w-xs bg-brand-dark border-l border-brand-gold/30 shadow-2xl flex flex-col translate-x-full transition-transform duration-300 ease-out md:hidden">
+        <div class="flex items-center justify-between px-5 h-16 border-b border-brand-gold/20">
+            <span class="font-heading text-sm font-bold tracking-widest gold-gradient-text">MENU</span>
+            <button id="mobile-menu-close" aria-label="Close navigation menu" class="close-x text-gray-300 hover:text-brand-gold focus:outline-none p-2">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true">
+                    <line x1="5" y1="5" x2="19" y2="19"></line>
+                    <line x1="19" y1="5" x2="5" y2="19"></line>
+                </svg>
+            </button>
+        </div>
+        <nav class="flex-1 overflow-y-auto px-5 py-3">
+            <a href="#about" class="menu-item block py-3.5 text-sm uppercase tracking-widest font-semibold text-gray-300 hover:text-brand-gold border-b border-white/5">About Us</a>
+            <a href="#portfolio" class="menu-item block py-3.5 text-sm uppercase tracking-widest font-semibold text-gray-300 hover:text-brand-gold border-b border-white/5">Portfolio</a>
+            <a href="#process" class="menu-item block py-3.5 text-sm uppercase tracking-widest font-semibold text-gray-300 hover:text-brand-gold border-b border-white/5">Our Process</a>
+            <a href="#contact" class="menu-item block py-3.5 text-sm uppercase tracking-widest font-semibold text-gray-300 hover:text-brand-gold">Contact</a>
+        </nav>
+        <div class="menu-footer px-5 pb-6 pt-3 flex flex-col gap-2.5 border-t border-brand-gold/10">
+            <a href="https://wa.me/923218662496" target="_blank" class="flex items-center justify-center gap-2 w-full py-3 text-sm font-semibold text-brand-gold border border-brand-gold/30 rounded-xl">
+                <i class="fab fa-whatsapp text-green-500"></i>
+                <span>WhatsApp Direct</span>
+            </a>
+            <a href="#contact" class="gold-btn w-full py-3 rounded-xl text-center text-sm font-bold uppercase tracking-wider">
+                Send Query
+            </a>
+        </div>
+    </aside>
 
     <!-- Hero Section -->
     <section class="relative pt-28 pb-16 sm:pt-40 sm:pb-28 lg:pt-48 lg:pb-36 overflow-hidden flex items-center justify-center min-h-[85vh] sm:min-h-[90vh]">
@@ -418,7 +469,30 @@
                     </a>
                 </div>
 
-                <form action="mailto:shaan_khalid@hotmail.com" method="post" enctype="text/plain" class="space-y-3 sm:space-y-4 text-left">
+                <!-- Success Message (hidden until the query is sent) -->
+                <div id="query-success" class="hidden success-pop py-8 sm:py-10 px-2" role="status" aria-live="polite">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto rounded-full bg-green-500/10 border border-green-500/40 flex items-center justify-center text-green-400 text-3xl sm:text-4xl mb-5">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <h3 class="font-heading text-xl sm:text-3xl font-bold gold-gradient-text mb-3">Thank You!</h3>
+                    <p class="text-gray-200 text-sm sm:text-lg font-semibold mb-2">We have received your query.</p>
+                    <p class="text-gray-400 text-xs sm:text-base max-w-md mx-auto mb-6">We will get back to you within <span class="text-brand-gold font-bold">2 hours</span>.</p>
+                    <button type="button" id="send-another-btn" class="px-6 py-2.5 rounded-full text-xs sm:text-sm font-semibold text-brand-gold border border-brand-gold/40 hover:bg-brand-gold/10 transition-all">
+                        Send Another Query
+                    </button>
+                </div>
+
+                <!-- Error Message -->
+                <div id="query-error" class="hidden mb-4 p-3 sm:p-4 rounded-xl border border-red-500/40 bg-red-500/10 text-red-300 text-xs sm:text-sm text-left" role="alert">
+                    Sorry, your query could not be sent. Please try again or contact us directly on
+                    <a href="https://wa.me/923218662496" target="_blank" class="underline font-semibold text-brand-gold">WhatsApp</a>.
+                </div>
+
+                <!-- Query Form: sends data directly to email in the background (no mail app opens) -->
+                <form id="query-form" class="space-y-3 sm:space-y-4 text-left">
+                    <!-- Honeypot (spam protection, keep hidden) -->
+                    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                         <div>
                             <label class="block text-[11px] sm:text-xs font-medium text-gray-400 mb-1">Your Name</label>
@@ -429,12 +503,22 @@
                             <input type="text" name="Company" placeholder="Company Name" class="w-full bg-brand-dark border border-gray-800 rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-gray-200 focus:outline-none focus:border-brand-gold">
                         </div>
                     </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                        <div>
+                            <label class="block text-[11px] sm:text-xs font-medium text-gray-400 mb-1">Phone / WhatsApp</label>
+                            <input type="tel" name="Phone" required placeholder="e.g. 0300 1234567" class="w-full bg-brand-dark border border-gray-800 rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-gray-200 focus:outline-none focus:border-brand-gold">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] sm:text-xs font-medium text-gray-400 mb-1">Your Email</label>
+                            <input type="email" name="email" placeholder="you@example.com" class="w-full bg-brand-dark border border-gray-800 rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-gray-200 focus:outline-none focus:border-brand-gold">
+                        </div>
+                    </div>
                     <div>
                         <label class="block text-[11px] sm:text-xs font-medium text-gray-400 mb-1">Message / Requirements</label>
                         <textarea name="Message" rows="4" required placeholder="Describe your box dimensions, foil type, quantity..." class="w-full bg-brand-dark border border-gray-800 rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-gray-200 focus:outline-none focus:border-brand-gold"></textarea>
                     </div>
-                    <button type="submit" class="gold-btn w-full py-3 sm:py-3.5 rounded-xl text-xs sm:text-sm uppercase tracking-wider font-bold">
-                        Send Email Inquiry
+                    <button type="submit" id="query-submit-btn" class="gold-btn w-full py-3 sm:py-3.5 rounded-xl text-xs sm:text-sm uppercase tracking-wider font-bold">
+                        Send Query
                     </button>
                 </form>
             </div>
@@ -619,19 +703,88 @@
         }
         drawHeroBox();
 
-        // Mobile Menu Toggle
+        // Mobile Menu: right-side drawer
         const menuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
+        const menuOverlay = document.getElementById('menu-overlay');
+        const menuClose = document.getElementById('mobile-menu-close');
 
-        menuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
+        function openMenu() {
+            mobileMenu.classList.remove('translate-x-full');
+            mobileMenu.classList.add('menu-open');
+            mobileMenu.setAttribute('aria-hidden', 'false');
+            menuOverlay.classList.remove('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeMenu() {
+            mobileMenu.classList.add('translate-x-full');
+            mobileMenu.classList.remove('menu-open');
+            mobileMenu.setAttribute('aria-hidden', 'true');
+            menuOverlay.classList.add('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = '';
+        }
+
+        menuBtn.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+        menuOverlay.addEventListener('click', closeMenu);
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+        window.addEventListener('resize', () => { if (window.innerWidth >= 768) closeMenu(); });
+
+        // Close menu when a link is tapped
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', closeMenu);
         });
 
-        // Close mobile menu on click
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-            });
+        // QUERY FORM: send directly to email (no mail app) + show confirmation
+        const queryForm = document.getElementById('query-form');
+        const querySuccess = document.getElementById('query-success');
+        const queryError = document.getElementById('query-error');
+        const submitBtn = document.getElementById('query-submit-btn');
+        const sendAnotherBtn = document.getElementById('send-another-btn');
+        const QUERY_ENDPOINT = 'https://formsubmit.co/ajax/shaan_khalid@hotmail.com';
+
+        queryForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            queryError.classList.add('hidden');
+
+            const fd = new FormData(queryForm);
+            const payload = Object.fromEntries(fd.entries());
+            payload._subject = 'New Query from MK Packaging Website - ' + (payload.Name || 'Customer');
+            payload._template = 'table';
+            payload._captcha = 'false';
+            if (payload.email) payload._replyto = payload.email;
+
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+
+            try {
+                const res = await fetch(QUERY_ENDPOINT, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json().catch(() => ({}));
+
+                if (res.ok && (data.success === true || data.success === 'true')) {
+                    queryForm.classList.add('hidden');
+                    querySuccess.classList.remove('hidden');
+                    queryForm.reset();
+                    querySuccess.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    throw new Error('Send failed');
+                }
+            } catch (err) {
+                queryError.classList.remove('hidden');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            }
+        });
+
+        sendAnotherBtn.addEventListener('click', () => {
+            querySuccess.classList.add('hidden');
+            queryForm.classList.remove('hidden');
         });
     </script>
 </body>
