@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>MK Packaging | Luxury Custom Box Manufacturer</title>
+    <!-- Instant Vercel Caching & Performance Hints -->
+    <meta http-equiv="Cache-Control" content="public, max-age=31536000, immutable">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Vanilla Tilt JS for 3D Cards -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#08090B',
+                            dark: '#0F1115',
+                            card: '#16191E',
+                            gold: '#D4AF37',
+                            goldLight: '#F3E5AB',
+                            goldDark: '#AA7C11',
+                            accent: '#E2C044'
+                        }
+                    },
+                    fontFamily: {
+                        heading: ['Cinzel', 'serif'],
+                        body: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #08090B;
+            color: #E2E8F0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFF099 0%, #D4AF37 50%, #997A15 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-btn {
+            background: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%);
+            color: #08090B;
+            font-weight: 700;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .gold-btn:hover {
+            background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 100%);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            transform: translateY(-2px);
+        }
+        .glass-nav {
+            background: rgba(8, 9, 11, 0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        /* Hero Canvas */
+        #hero-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Responsive Portfolio Card Tilt Styling */
+        .portfolio-card {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .portfolio-card:hover {
+            border-color: rgba(212, 175, 55, 0.9);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+        .card-img-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            border-radius: 0.75rem;
+            background-color: #0F1115;
+        }
+        .card-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .portfolio-card:hover .card-img-wrapper img {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-200">
+
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                
+                <!-- Logo -->
+                <a href="#" class="flex items-center gap-2 sm:gap-3 group">
+                    <div class="w-9 h-9 sm:w-11 sm:h-11 rounded-full border border-brand-gold/40 flex items-center justify-center bg-brand-dark group-hover:border-brand-gold transition-colors shadow-lg">
+                        <span class="font-heading font-bold text-brand-gold text-base sm:text-lg">MK</span>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-heading text-base sm:text-xl font-bold tracking-wider gold-gradient-text leading-none">MK PACKAGING</span>
+                        <span class="text-[8px] sm:text-[9px] text-gray-400 tracking-widest uppercase mt-0.5">Luxury Box Manufacturer</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-6 lg:space-x-8">
+                    <a href="#about" class="text-xs uppercase tracking-widest font-semibold text-gray-300 hover:text-brand-gold transition-colors">About Us</a>
+                    <a href="#portfolio" class="text-xs uppercase tracking-widest font-semibold text-gray-300 hover:text-brand-gold transition-colors">Portfolio</a>
+                    <a href="#process" class="text-xs uppercase tracking-widest font-semibold text-gray-300 hover:text-brand-gold transition-colors">Our Process</a>
+                    <a href="#contact" class="text-xs uppercase tracking-widest font-semibold text-gray-300 hover:text-brand-gold transition-colors">Contact</a>
+                </nav>
+
+                <!-- Actions -->
+                <div class="hidden md:flex items-center gap-3 lg:gap-4">
+                    <a href="https://wa.me/923218662496" target="_blank" class="flex items-center gap-2 px-3.5 py-2 text-xs font-semibold text-brand-gold border border-brand-gold/30 rounded-full hover:bg-brand-gold/10 transition-all">
+                        <i class="fab fa-whatsapp text-sm text-green-500"></i>
+                        <span>03218662496</span>
+                    </a>
+                    <a href="#contact" class="gold-btn px-5 py-2.5 rounded-full text-xs uppercase tracking-wider shadow-lg">
+                        Send Query
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" aria-label="Toggle navigation menu" class="text-gray-300 hover:text-brand-gold focus:outline-none p-2">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-b border-brand-gold/20 px-4 sm:px-6 pt-3 pb-6 space-y-3">
+            <a href="#about" class="block py-2 text-xs sm:text-sm uppercase tracking-widest font-semibold text-gray-300 hover:text-brand-gold">About Us</a>
+            <a href="#portfolio" class="block py-2 text-xs sm:text-sm uppercase tracking-widest font-semibold text-gray-300 hover:text-brand-gold">Portfolio</a>
+            <a href="#process" class="block py-2 text-xs sm:text-sm uppercase tracking-widest font-semibold text-gray-300 hover:text-brand-gold">Our Process</a>
+            <a href="#contact" class="block py-2 text-xs sm:text-sm uppercase tracking-widest font-semibold text-gray-300 hover:text-brand-gold">Contact</a>
+            <div class="pt-3 flex flex-col gap-2.5">
+                <a href="https://wa.me/923218662496" target="_blank" class="flex items-center justify-center gap-2 w-full py-2.5 text-xs sm:text-sm font-semibold text-brand-gold border border-brand-gold/30 rounded-xl">
+                    <i class="fab fa-whatsapp text-green-500"></i>
+                    <span>WhatsApp Direct</span>
+                </a>
+                <a href="#contact" class="gold-btn w-full py-2.5 rounded-xl text-center text-xs sm:text-sm font-bold uppercase tracking-wider">
+                    Send Query
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative pt-28 pb-16 sm:pt-40 sm:pb-28 lg:pt-48 lg:pb-36 overflow-hidden flex items-center justify-center min-h-[85vh] sm:min-h-[90vh]">
+        <canvas id="hero-canvas"></canvas>
+
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            <div class="inline-flex items-center gap-2 px-3.5 sm:px-5 py-1.5 sm:py-2 rounded-full border border-brand-gold/40 bg-brand-dark/90 text-brand-gold text-[10px] sm:text-xs font-semibold tracking-widest uppercase mb-6 sm:mb-8 shadow-2xl backdrop-blur-sm">
+                <i class="fas fa-crown text-[10px] sm:text-xs text-brand-gold"></i> Premium Custom Packaging Solutions
+            </div>
+            
+            <h1 class="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight mb-6 sm:mb-8 leading-tight drop-shadow-2xl">
+                Architects of <br class="hidden sm:block">
+                <span class="gold-gradient-text">Luxury Packaging & Rigid Boxes</span>
+            </h1>
+            
+            <p class="max-w-3xl mx-auto text-gray-300 text-sm sm:text-lg lg:text-xl mb-8 sm:mb-12 font-light leading-relaxed drop-shadow-md px-2">
+                Elevate your brand with bespoke rigid cases, custom perfume boxes, luxury footwear packaging, and high-end corporate presentation boxes manufactured for global excellence.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-5 px-4 sm:px-0">
+                <a href="#portfolio" class="gold-btn px-8 sm:px-10 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm uppercase tracking-widest w-full sm:w-auto shadow-2xl">
+                    View Portfolio
+                </a>
+                <a href="https://wa.me/923218662496" target="_blank" class="px-8 sm:px-9 py-3.5 sm:py-4 rounded-full text-xs sm:text-sm font-semibold text-gray-200 border border-brand-gold/40 hover:border-brand-gold hover:text-brand-gold transition-all w-full sm:w-auto bg-brand-dark/80 backdrop-blur-md">
+                    <i class="fab fa-whatsapp text-green-500 mr-2 text-base"></i> Direct WhatsApp Inquiry
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 sm:py-24 bg-brand-dark relative border-y border-brand-gold/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+                <div>
+                    <span class="text-brand-gold text-[10px] sm:text-xs font-bold tracking-widest uppercase block mb-2">Excellence in Packaging</span>
+                    <h2 class="font-heading text-2xl sm:text-4xl font-bold mb-4 sm:mb-6 gold-gradient-text">Crafting Impression That Lasts</h2>
+                    <p class="text-gray-400 text-xs sm:text-sm lg:text-base leading-relaxed mb-6">
+                        At <strong class="text-gray-200">MK Packaging</strong>, we specialize in high-end bespoke packaging solutions tailored for luxury markets worldwide. With precision structural engineering, hot foil stamping, and premium velvet/EVA foam inserts, we turn packaging into an unboxing experience.
+                    </p>
+                    <div class="grid grid-cols-2 gap-4 sm:gap-6 pt-2">
+                        <div class="border-l-2 border-brand-gold pl-3 sm:pl-4">
+                            <h3 class="font-heading text-xl sm:text-2xl font-bold text-gray-100">100%</h3>
+                            <p class="text-[10px] sm:text-xs text-gray-400">Custom Dimensions & Foiling</p>
+                        </div>
+                        <div class="border-l-2 border-brand-gold pl-3 sm:pl-4">
+                            <h3 class="font-heading text-xl sm:text-2xl font-bold text-gray-100">Global</h3>
+                            <p class="text-[10px] sm:text-xs text-gray-400">Export Readiness</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                    <div class="p-5 sm:p-6 bg-brand-card rounded-2xl border border-brand-gold/20">
+                        <i class="fas fa-gem text-brand-gold text-xl sm:text-2xl mb-3 sm:mb-4"></i>
+                        <h3 class="font-heading text-base sm:text-lg font-bold text-gray-200 mb-1 sm:mb-2">Perfume Boxes</h3>
+                        <p class="text-[11px] sm:text-xs text-gray-400">Custom rigid cases built for luxury fragrances with gold foil emblems.</p>
+                    </div>
+                    <div class="p-5 sm:p-6 bg-brand-card rounded-2xl border border-brand-gold/20">
+                        <i class="fas fa-briefcase text-brand-gold text-xl sm:text-2xl mb-3 sm:mb-4"></i>
+                        <h3 class="font-heading text-base sm:text-lg font-bold text-gray-200 mb-1 sm:mb-2">Corporate Boxes</h3>
+                        <p class="text-[11px] sm:text-xs text-gray-400">High-end executive gift packaging for banks and multinational brands.</p>
+                    </div>
+                    <div class="p-5 sm:p-6 bg-brand-card rounded-2xl border border-brand-gold/20">
+                        <i class="fas fa-shoe-prints text-brand-gold text-xl sm:text-2xl mb-3 sm:mb-4"></i>
+                        <h3 class="font-heading text-base sm:text-lg font-bold text-gray-200 mb-1 sm:mb-2">Footwear Cases</h3>
+                        <p class="text-[11px] sm:text-xs text-gray-400">Custom magnetic & lid-off shoe packaging engineered for high durability.</p>
+                    </div>
+                    <div class="p-5 sm:p-6 bg-brand-card rounded-2xl border border-brand-gold/20">
+                        <i class="fas fa-layer-group text-brand-gold text-xl sm:text-2xl mb-3 sm:mb-4"></i>
+                        <h3 class="font-heading text-base sm:text-lg font-bold text-gray-200 mb-1 sm:mb-2">Rigid Boardwork</h3>
+                        <p class="text-[11px] sm:text-xs text-gray-400">Heavyweight board construction with high durability and premium finish.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Showcase Section -->
+    <section id="portfolio" class="py-16 sm:py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sm:mb-16">
+                <span class="text-brand-gold text-[10px] sm:text-xs font-bold tracking-widest uppercase block mb-2">Our Showcase</span>
+                <h2 class="font-heading text-2xl sm:text-4xl lg:text-5xl font-bold gold-gradient-text">Featured Packaging Portfolio</h2>
+                <p class="text-gray-400 text-xs sm:text-base max-w-xl mx-auto mt-2 sm:mt-3 px-2">Explore our manufactured luxury boxes and custom rigid cases.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                
+                <!-- Card 1 -->
+                <div class="portfolio-card bg-brand-card rounded-2xl overflow-hidden p-3" data-tilt data-tilt-max="10" data-tilt-speed="400">
+                    <div class="card-img-wrapper">
+                        <img src="Custom-Perfume-Box-with-Insert.jpg" alt="Perfume Rigid Box" loading="lazy" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-full h-full flex flex-col items-center justify-center p-4 text-center\'><i class=\'fas fa-box-open text-3xl text-brand-gold/40 mb-2\'></i><span class=\'text-xs text-gray-500 font-mono\'>Custom-Perfume-Box-with-Insert.jpg</span></div>';">
+                    </div>
+                    <div class="p-4 sm:p-5">
+                        <span class="text-[9px] sm:text-[10px] text-brand-gold uppercase tracking-widest font-bold block mb-1">Fragrance Line</span>
+                        <h3 class="font-heading text-lg sm:text-xl font-bold text-gray-100">Luxury Perfume Rigid Box</h3>
+                        <p class="text-xs text-gray-400 mt-2">Gold hot foil stamping on matte black textured rigid board with magnetic side seal.</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="portfolio-card bg-brand-card rounded-2xl overflow-hidden p-3" data-tilt data-tilt-max="10" data-tilt-speed="400">
+                    <div class="card-img-wrapper">
+                        <img src="burgundy-velvet-box-with-satin-interior-16.5x18-in.jpg" alt="Velvet Interior Box" loading="lazy" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-full h-full flex flex-col items-center justify-center p-4 text-center\'><i class=\'fas fa-box-open text-3xl text-brand-gold/40 mb-2\'></i><span class=\'text-xs text-gray-500 font-mono\'>burgundy-velvet-box-with-satin-interior-16.5x18-in.jpg</span></div>';">
+                    </div>
+                    <div class="p-4 sm:p-5">
+                        <span class="text-[9px] sm:text-[10px] text-brand-gold uppercase tracking-widest font-bold block mb-1">Premium Interior</span>
+                        <h3 class="font-heading text-lg sm:text-xl font-bold text-gray-100">Velvet Cavity Presentation Box</h3>
+                        <p class="text-xs text-gray-400 mt-2">Inside gold typography printing with custom-cut velvet insert for secure bottle placement.</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="portfolio-card bg-brand-card rounded-2xl overflow-hidden p-3" data-tilt data-tilt-max="10" data-tilt-speed="400">
+                    <div class="card-img-wrapper">
+                        <img src="custom-corporate-gift-boxes.webp" alt="Corporate Gift Box" loading="lazy" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-full h-full flex flex-col items-center justify-center p-4 text-center\'><i class=\'fas fa-box-open text-3xl text-brand-gold/40 mb-2\'></i><span class=\'text-xs text-gray-500 font-mono\'>custom-corporate-gift-boxes.webp</span></div>';">
+                    </div>
+                    <div class="p-4 sm:p-5">
+                        <span class="text-[9px] sm:text-[10px] text-brand-gold uppercase tracking-widest font-bold block mb-1">Executive Series</span>
+                        <h3 class="font-heading text-lg sm:text-xl font-bold text-gray-100">Corporate Executive Box</h3>
+                        <p class="text-xs text-gray-400 mt-2">Custom silver/gold logo foil embossing designed for corporate client presentation sets.</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="portfolio-card bg-brand-card rounded-2xl overflow-hidden p-3" data-tilt data-tilt-max="10" data-tilt-speed="400">
+                    <div class="card-img-wrapper">
+                        <img src="retail-display-boxes.jpg" alt="Retail Display Box" loading="lazy" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-full h-full flex flex-col items-center justify-center p-4 text-center\'><i class=\'fas fa-box-open text-3xl text-brand-gold/40 mb-2\'></i><span class=\'text-xs text-gray-500 font-mono\'>counter-display-box.jpg</span></div>';">
+                    </div>
+                    <div class="p-4 sm:p-5">
+                        <span class="text-[9px] sm:text-[10px] text-brand-gold uppercase tracking-widest font-bold block mb-1">Retail Showcase</span>
+                        <h3 class="font-heading text-lg sm:text-xl font-bold text-gray-100">Custom Retail Display Box</h3>
+                        <p class="text-xs text-gray-400 mt-2">High-impact point-of-sale display packaging engineered for countertop product visibility.</p>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="portfolio-card bg-brand-card rounded-2xl overflow-hidden p-3" data-tilt data-tilt-max="10" data-tilt-speed="400">
+                    <div class="card-img-wrapper">
+                        <img src="Custom-printed-Shoe-Boxes.webp" alt="Custom Shoe Box" loading="lazy" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-full h-full flex flex-col items-center justify-center p-4 text-center\'><i class=\'fas fa-box-open text-3xl text-brand-gold/40 mb-2\'></i><span class=\'text-xs text-gray-500 font-mono\'>magnetic-shoebox.jpg</span></div>';">
+                    </div>
+                    <div class="p-4 sm:p-5">
+                        <span class="text-[9px] sm:text-[10px] text-brand-gold uppercase tracking-widest font-bold block mb-1">Footwear & Sneakers</span>
+                        <h3 class="font-heading text-lg sm:text-xl font-bold text-gray-100">Luxury Custom Shoe Box</h3>
+                        <p class="text-xs text-gray-400 mt-2">High-strength rigid board construction with custom foil stamping for premium footwear brands.</p>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="portfolio-card bg-brand-card rounded-2xl overflow-hidden p-3" data-tilt data-tilt-max="10" data-tilt-speed="400">
+                    <div class="card-img-wrapper">
+                        <img src="images (1).jpg" alt="Confectionery Sweets Box" loading="lazy" onerror="this.onerror=null; this.parentElement.innerHTML='<div class=\'w-full h-full flex flex-col items-center justify-center p-4 text-center\'><i class=\'fas fa-box-open text-3xl text-brand-gold/40 mb-2\'></i><span class=\'text-xs text-gray-500 font-mono\'>mithai-sweet-box.jpg</span></div>';">
+                    </div>
+                    <div class="p-4 sm:p-5">
+                        <span class="text-[9px] sm:text-[10px] text-brand-gold uppercase tracking-widest font-bold block mb-1">Festive & Sweets</span>
+                        <h3 class="font-heading text-lg sm:text-xl font-bold text-gray-100">Luxury Sweets & Dry Fruit Box</h3>
+                        <p class="text-xs text-gray-400 mt-2">Royal rigid partition box decorated with gold foil damask artwork for celebratory gifting.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Manufacturing Process Section -->
+    <section id="process" class="py-16 sm:py-24 bg-brand-dark border-y border-brand-gold/20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 sm:mb-16">
+                <span class="text-brand-gold text-[10px] sm:text-xs font-bold tracking-widest uppercase block mb-2">Precision Workflow</span>
+                <h2 class="font-heading text-2xl sm:text-4xl lg:text-5xl font-bold gold-gradient-text">Our Manufacturing Process</h2>
+                <p class="text-gray-400 text-xs sm:text-base max-w-2xl mx-auto mt-2 sm:mt-3 px-2">From raw structural board cutting to final gold hot foil stamping and velvet lining.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                <div class="p-6 sm:p-8 bg-brand-card rounded-2xl border border-brand-gold/20 relative">
+                    <div class="text-3xl sm:text-4xl font-heading font-extrabold text-brand-gold/20 absolute top-4 right-6">01</div>
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold text-lg sm:text-xl mb-5 sm:mb-6">
+                        <i class="fas fa-drafting-compass"></i>
+                    </div>
+                    <h3 class="font-heading text-base sm:text-lg font-bold text-gray-100 mb-2">Structural Design</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Exact dimension mapping, die-line creation, and prototype testing for secure product fit.</p>
+                </div>
+
+                <div class="p-6 sm:p-8 bg-brand-card rounded-2xl border border-brand-gold/20 relative">
+                    <div class="text-3xl sm:text-4xl font-heading font-extrabold text-brand-gold/20 absolute top-4 right-6">02</div>
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold text-lg sm:text-xl mb-5 sm:mb-6">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3 class="font-heading text-base sm:text-lg font-bold text-gray-100 mb-2">Rigid Board Cutting</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Heavyweight premium grayboard precision V-grooving and corner taping for sharp edges.</p>
+                </div>
+
+                <div class="p-6 sm:p-8 bg-brand-card rounded-2xl border border-brand-gold/20 relative">
+                    <div class="text-3xl sm:text-4xl font-heading font-extrabold text-brand-gold/20 absolute top-4 right-6">03</div>
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold text-lg sm:text-xl mb-5 sm:mb-6">
+                        <i class="fas fa-stamp"></i>
+                    </div>
+                    <h3 class="font-heading text-base sm:text-lg font-bold text-gray-100 mb-2">Hot Foil & Finishing</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">High-pressure metallic gold/silver foil stamping with soft-touch matte lamination.</p>
+                </div>
+
+                <div class="p-6 sm:p-8 bg-brand-card rounded-2xl border border-brand-gold/20 relative">
+                    <div class="text-3xl sm:text-4xl font-heading font-extrabold text-brand-gold/20 absolute top-4 right-6">04</div>
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold text-lg sm:text-xl mb-5 sm:mb-6">
+                        <i class="fas fa-box-check"></i>
+                    </div>
+                    <h3 class="font-heading text-base sm:text-lg font-bold text-gray-100 mb-2">Interior Fitting & Audit</h3>
+                    <p class="text-xs text-gray-400 leading-relaxed">Custom EVA foam cavity insertion, magnetic seal verification, and export quality inspection.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 sm:py-24 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-brand-card p-6 sm:p-10 lg:p-12 rounded-3xl border border-brand-gold/30 text-center relative overflow-hidden shadow-2xl">
+                <span class="text-brand-gold text-[10px] sm:text-xs font-bold tracking-widest uppercase block mb-2">Direct Contact</span>
+                <h2 class="font-heading text-2xl sm:text-4xl font-bold gold-gradient-text mb-3 sm:mb-4">Request a Manufacturer Quote</h2>
+                <p class="text-gray-400 text-xs sm:text-sm max-w-md mx-auto mb-6 sm:mb-8">Send your requirements directly to our export team or chat live via WhatsApp.</p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-8 sm:mb-10 text-left">
+                    <a href="https://wa.me/923218662496" target="_blank" class="p-3.5 sm:p-4 bg-brand-dark/80 rounded-xl border border-brand-gold/20 flex items-center gap-3 sm:gap-4 hover:border-brand-gold transition-colors">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-green-500/10 border border-green-500/30 flex items-center justify-center text-green-400 text-lg sm:text-xl shrink-0">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <div class="overflow-hidden">
+                            <span class="text-[9px] sm:text-[10px] text-gray-400 uppercase tracking-wider block">WhatsApp Direct</span>
+                            <span class="text-xs sm:text-sm font-bold text-gray-200">03218662496</span>
+                        </div>
+                    </a>
+
+                    <a href="mailto:shaan_khalid@hotmail.com" class="p-3.5 sm:p-4 bg-brand-dark/80 rounded-xl border border-brand-gold/20 flex items-center gap-3 sm:gap-4 hover:border-brand-gold transition-colors">
+                        <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-lg bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold text-lg sm:text-xl shrink-0">
+                            <i class="far fa-envelope"></i>
+                        </div>
+                        <div class="overflow-hidden">
+                            <span class="text-[9px] sm:text-[10px] text-gray-400 uppercase tracking-wider block">Email Official</span>
+                            <span class="text-xs sm:text-sm font-bold text-gray-200 truncate block">shaan_khalid@hotmail.com</span>
+                        </div>
+                    </a>
+                </div>
+
+                <form action="mailto:shaan_khalid@hotmail.com" method="post" enctype="text/plain" class="space-y-3 sm:space-y-4 text-left">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                        <div>
+                            <label class="block text-[11px] sm:text-xs font-medium text-gray-400 mb-1">Your Name</label>
+                            <input type="text" name="Name" required placeholder="Full Name" class="w-full bg-brand-dark border border-gray-800 rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-gray-200 focus:outline-none focus:border-brand-gold">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] sm:text-xs font-medium text-gray-400 mb-1">Company / Brand</label>
+                            <input type="text" name="Company" placeholder="Company Name" class="w-full bg-brand-dark border border-gray-800 rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-gray-200 focus:outline-none focus:border-brand-gold">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-[11px] sm:text-xs font-medium text-gray-400 mb-1">Message / Requirements</label>
+                        <textarea name="Message" rows="4" required placeholder="Describe your box dimensions, foil type, quantity..." class="w-full bg-brand-dark border border-gray-800 rounded-xl px-3.5 sm:px-4 py-2.5 sm:py-3 text-xs sm:text-sm text-gray-200 focus:outline-none focus:border-brand-gold"></textarea>
+                    </div>
+                    <button type="submit" class="gold-btn w-full py-3 sm:py-3.5 rounded-xl text-xs sm:text-sm uppercase tracking-wider font-bold">
+                        Send Email Inquiry
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-black border-t border-brand-gold/20 py-12 sm:py-16 text-gray-400 text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10 mb-10 sm:mb-12">
+                <div class="space-y-3 sm:space-y-4">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full border border-brand-gold/40 flex items-center justify-center bg-brand-dark">
+                            <span class="font-heading font-bold text-brand-gold text-xs sm:text-sm">MK</span>
+                        </div>
+                        <span class="font-heading text-base sm:text-lg font-bold gold-gradient-text">MK PACKAGING</span>
+                    </div>
+                    <p class="text-gray-500 leading-relaxed text-[11px]">
+                        Leading luxury rigid packaging and custom box manufacturer. Specializing in high-end hot foil stamping, velvet cavities, and export quality presentation boxes.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-heading text-xs sm:text-sm font-bold text-gray-200 uppercase tracking-widest mb-3 sm:mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#about" class="hover:text-brand-gold transition-colors text-[11px] sm:text-xs">About Our Factory</a></li>
+                        <li><a href="#portfolio" class="hover:text-brand-gold transition-colors text-[11px] sm:text-xs">Bespoke Box Portfolio</a></li>
+                        <li><a href="#process" class="hover:text-brand-gold transition-colors text-[11px] sm:text-xs">Production Process</a></li>
+                        <li><a href="#contact" class="hover:text-brand-gold transition-colors text-[11px] sm:text-xs">Request Factory Quote</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-heading text-xs sm:text-sm font-bold text-gray-200 uppercase tracking-widest mb-3 sm:mb-4">Box Categories</h4>
+                    <ul class="space-y-2 text-[11px] sm:text-xs">
+                        <li class="hover:text-brand-gold transition-colors">Perfume & Fragrance Rigid Boxes</li>
+                        <li class="hover:text-brand-gold transition-colors">Corporate Executive Presentation Boxes</li>
+                        <li class="hover:text-brand-gold transition-colors">Luxury Footwear & Shoe Boxes</li>
+                        <li class="hover:text-brand-gold transition-colors">Custom Sweets & Dry Fruit Rigid Boxes</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-heading text-xs sm:text-sm font-bold text-gray-200 uppercase tracking-widest mb-3 sm:mb-4">Contact Info</h4>
+                    <ul class="space-y-2.5 text-[11px] sm:text-xs">
+                        <li class="flex items-center gap-2.5">
+                            <i class="fab fa-whatsapp text-green-500 text-sm"></i>
+                            <span class="text-gray-300">03218662496</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i class="far fa-envelope text-brand-gold text-sm"></i>
+                            <span class="text-gray-300">shaan_khalid@hotmail.com</span>
+                        </li>
+                        <li class="flex items-center gap-2.5">
+                            <i class="fas fa-globe text-brand-gold text-sm"></i>
+                            <span class="text-gray-300">Global Export Services</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-6 sm:pt-8 border-t border-gray-900 flex flex-col sm:flex-row justify-between items-center gap-3 text-[10px] sm:text-[11px] text-gray-500">
+                <p>© 2026 MK Packaging. All Rights Reserved.</p>
+                <p class="text-brand-gold/70 font-semibold">Custom Luxury Packaging Manufacturer</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- HERO 3D MAGNETIC CLOSING BOX CANVAS ANIMATION SCRIPT -->
+    <script>
+        const heroCanvas = document.getElementById('hero-canvas');
+        const hCtx = heroCanvas.getContext('2d');
+
+        function resizeHero() {
+            heroCanvas.width = heroCanvas.parentElement.clientWidth;
+            heroCanvas.height = heroCanvas.parentElement.clientHeight;
+        }
+        window.addEventListener('resize', resizeHero);
+        resizeHero();
+
+        let heroAngle = 0;
+        let lidProgress = 0; // 0 = completely closed tight, 1 = fully open
+        let lidOpening = true;
+        let colorHue = 0;
+
+        function drawHeroBox() {
+            hCtx.clearRect(0, 0, heroCanvas.width, heroCanvas.height);
+
+            const cx = heroCanvas.width / 2;
+            const cy = heroCanvas.height / 2 + 15;
+            
+            // Dynamic responsive scaling for canvas box
+            const minDim = Math.min(heroCanvas.width, heroCanvas.height);
+            const size = heroCanvas.width < 640 ? minDim * 0.28 : minDim * 0.22;
+            const boxH = size * 0.65;
+
+            // Animate smooth opening & complete closing loop
+            if (lidOpening) {
+                lidProgress += 0.008;
+                if (lidProgress >= 1.0) lidOpening = false;
+            } else {
+                lidProgress -= 0.008;
+                if (lidProgress <= 0) lidOpening = true;
+            }
+
+            heroAngle += 0.005;
+            colorHue = (colorHue + 0.8) % 360;
+
+            function project(x, y, z) {
+                const rotY = heroAngle;
+                const rotX = 0.38;
+
+                let x1 = x * Math.cos(rotY) + z * Math.sin(rotY);
+                let z1 = -x * Math.sin(rotY) + z * Math.cos(rotY);
+
+                let y2 = y * Math.cos(rotX) - z1 * Math.sin(rotX);
+                return [cx + x1, cy + y2];
+            }
+
+            // Box Bottom Base
+            const b0 = project(-size, boxH, -size);
+            const b1 = project(size, boxH, -size);
+            const b2 = project(size, boxH, size);
+            const b3 = project(-size, boxH, size);
+
+            // Box Rim (Top opening edges)
+            const t0 = project(-size, -boxH * 0.4, -size);
+            const t1 = project(size, -boxH * 0.4, -size);
+            const t2 = project(size, -boxH * 0.4, size);
+            const t3 = project(-size, -boxH * 0.4, size);
+
+            // Internal Multicolor Light Radiation when lid opens
+            if (lidProgress > 0.05) {
+                const rad = size * 1.7 * lidProgress;
+                const auraGlow = hCtx.createRadialGradient(cx, cy - 10, 5, cx, cy - 10, rad);
+                auraGlow.addColorStop(0, `hsla(${colorHue}, 90%, 60%, ${lidProgress * 0.8})`);
+                auraGlow.addColorStop(0.5, `hsla(${(colorHue + 120) % 360}, 85%, 50%, ${lidProgress * 0.4})`);
+                auraGlow.addColorStop(1, 'rgba(0,0,0,0)');
+
+                hCtx.fillStyle = auraGlow;
+                hCtx.beginPath();
+                hCtx.arc(cx, cy - 10, rad, 0, Math.PI * 2);
+                hCtx.fill();
+            }
+
+            // Draw Base Box Outline
+            hCtx.shadowBlur = 12;
+            hCtx.shadowColor = '#D4AF37';
+            hCtx.strokeStyle = 'rgba(212, 175, 55, 0.85)';
+            hCtx.lineWidth = heroCanvas.width < 640 ? 1.8 : 2.5;
+
+            function line(p1, p2) {
+                hCtx.beginPath();
+                hCtx.moveTo(p1[0], p1[1]);
+                hCtx.lineTo(p2[0], p2[1]);
+                hCtx.stroke();
+            }
+
+            line(b0, b1); line(b1, b2); line(b2, b3); line(b3, b0);
+            line(t0, t1); line(t1, t2); line(t2, t3); line(t3, t0);
+            line(b0, t0); line(b1, t1); line(b2, t2); line(b3, t3);
+
+            // Calculate Opening/Closing Lid + Magnetic Front Flap
+            const currentAngle = lidProgress * 1.6; // 0 rad = tight close, 1.6 rad = open
+            const cosL = Math.cos(currentAngle);
+            const sinL = Math.sin(currentAngle);
+
+            // Back Hinge Lid Top Point
+            const l0 = project(-size, -boxH * 0.4 - size * 2 * sinL, -size - size * 2 * cosL);
+            const l1 = project(size, -boxH * 0.4 - size * 2 * sinL, -size - size * 2 * cosL);
+
+            // Front Magnetic Flap Point
+            const flap0 = project(-size, -boxH * 0.4 - size * 2 * sinL + size * 0.5 * cosL, -size - size * 2 * cosL + size * 0.5 * sinL);
+            const flap1 = project(size, -boxH * 0.4 - size * 2 * sinL + size * 0.5 * cosL, -size - size * 2 * cosL + size * 0.5 * sinL);
+
+            hCtx.strokeStyle = 'rgba(243, 229, 171, 0.95)';
+            hCtx.lineWidth = heroCanvas.width < 640 ? 2 : 3;
+            line(t0, l0); line(t1, l1); line(l0, l1); // Main Lid
+            line(l0, flap0); line(l1, flap1); line(flap0, flap1); // Front Magnetic Lip
+
+            requestAnimationFrame(drawHeroBox);
+        }
+        drawHeroBox();
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu on click
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
